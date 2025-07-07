@@ -11,13 +11,13 @@ type filter_t = {
 
 export default function Page() {
   const [resource, setResource] = useState();
-  const [title, setTitle] = useState('');
-  const [date, setDate] = useState('');
-  const [scope, setScope] = useState('');
-  const [camera, setCamera] = useState('');
-  const [filters, setFilters] = useState<filter_t[]>([]);
-  const [stacking, setStacking] = useState('');
-  const [type, setType] = useState('');
+//  const [title, setTitle] = useState('');
+//  const [date, setDate] = useState('');
+//  const [scope, setScope] = useState('');
+//  const [camera, setCamera] = useState('');
+//  const [filters, setFilters] = useState<filter_t[]>([]);
+//  const [stacking, setStacking] = useState('');
+//  const [type, setType] = useState('');
   const [status, setStatus] = useState('');
 
   console.log(resource);
