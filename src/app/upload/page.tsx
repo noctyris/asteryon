@@ -1,13 +1,8 @@
 "use client";
 
 import UploadButton from "@/components/UploadButton";
+import { filter_t } from "@/types";
 import { useState } from "react";
-
-type filter_t = {
-  type: string;
-  exposure: number;
-  count: number;
-};
 
 export default function Page() {
   const [title, setTitle] = useState("");
@@ -50,16 +45,20 @@ export default function Page() {
     }
   }
 
-  function updateFilter(index: number, field: 'type' | 'exposure' | 'count', value: string) {
+  function updateFilter(
+    index: number,
+    field: "type" | "exposure" | "count",
+    value: string,
+  ) {
     setFilters((prev) => {
       const updated = [...prev];
-      updated[index] = {...updated[index], [field]: value};
+      updated[index] = { ...updated[index], [field]: value };
       return updated;
     });
   }
 
   function removeFilter(index: number) {
-    setFilters((prev) => prev.filter((_,i) => i!==index));
+    setFilters((prev) => prev.filter((_, i) => i !== index));
   }
 
   return (
@@ -99,23 +98,59 @@ export default function Page() {
           placeholder="Logiciel de stacking"
           className="border-b"
         />
-        <input
-          value={type}
+        <select
+          defaultValue="Type d'image"
           onChange={(e) => setType(e.target.value)}
-          placeholder="Type"
-          className="border-b"
-        />
+        >
+          <option disabled className={type ? "hidden" : "block"}>
+            {"Type d\'image"}
+          </option>
+          <option>Ciel profond</option>
+          <option>Lunaire</option>
+          <option>Système solaire</option>
+          <option>Open Field</option>
+        </select>
         <div className="flex flex-col items-center justify-center">
           {filters.map((r, index) => (
             <div key={index} className="flex gap-2 items-center">
-              <input value={r.type} onChange={(e) => updateFilter(index, 'type', e.target.value)} />
-              <input value={r.count} onChange={(e) => updateFilter(index, 'count', e.target.value)} type="number" />
-              <input value={r.exposure} onChange={(e) => updateFilter(index, 'exposure', e.target.value)} type="number" />
+              <input
+                value={r.type}
+                onChange={(e) => updateFilter(index, "type", e.target.value)}
+              />
+              <input
+                value={r.count}
+                onChange={(e) => updateFilter(index, "count", e.target.value)}
+                type="number"
+              />
+              <input
+                value={r.exposure}
+                onChange={(e) =>
+                  updateFilter(index, "exposure", e.target.value)
+                }
+                type="number"
+              />
               <span>s</span>
-              <button type="button" onClick={() => removeFilter(index)} className="text-red-600 hover:underline ml-2">✕</button>
+              <button
+                type="button"
+                onClick={() => removeFilter(index)}
+                className="text-red-600 hover:underline ml-2"
+              >
+                ✕
+              </button>
             </div>
           ))}
-          <button type="button" className="text-black hover:underline ml-2" onClick={() => setFilters([...filters, {type: "filter", exposure: 30, count: 0}])}>Ajouter un filtre</button>
+          <button
+            type="button"
+            className="text-black hover:underline ml-2"
+            onClick={() =>
+              setFilters([
+                ...filters,
+                { type: "filter", exposure: 30, count: 0 },
+              ])
+            }
+          >
+            Ajouter un filtre
+          </button>
         </div>
         <UploadButton setPublicID={setPublicID} publicID={publicID} />
         <button

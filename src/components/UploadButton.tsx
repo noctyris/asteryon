@@ -1,4 +1,9 @@
-import { CldUploadWidget, CldImage, CloudinaryUploadWidgetResults, CloudinaryUploadWidgetInfo } from "next-cloudinary";
+import {
+  CldUploadWidget,
+  CldImage,
+  CloudinaryUploadWidgetResults,
+  CloudinaryUploadWidgetInfo,
+} from "next-cloudinary";
 
 interface UploadButtonProps {
   publicID?: string;

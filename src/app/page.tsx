@@ -1,24 +1,15 @@
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 import { fetchImages } from "@/app/lib/data";
 import ImageCard from "@/components/ImageCard";
+import { Picture } from "@/types";
 import Link from "next/link";
-
-interface Picture {
-  id: number;
-  title: string;
-  publicID: string;
-  capture_date?: string;
-  scope?: string;
-  camera?: string;
-  filters?: { type: string; exposure: number; count: number; };
-  stacking?: string;
-  type?: string;
-}
 
 export default async function Home() {
   const rawPictures = await fetchImages();
-  const pictures = rawPictures.map((pic) => <ImageCard key={pic.id} pic={pic as Picture} />);
+  const pictures = rawPictures.map((pic) => (
+    <ImageCard key={pic.id} pic={pic as Picture} />
+  ));
 
   return (
     <>
@@ -26,9 +17,7 @@ export default async function Home() {
         <h1 className="text-5xl">Asteryon</h1>
         <Link href="/upload">Upload</Link>
       </header>
-      <main>
-        {pictures}
-      </main>
+      <main>{pictures}</main>
     </>
   );
 }
