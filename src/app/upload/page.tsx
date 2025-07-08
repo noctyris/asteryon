@@ -15,7 +15,7 @@ export default function Page() {
   const [captureDate, setCaptureDate] = useState("");
   const [scope, setScope] = useState("");
   const [camera, setCamera] = useState("");
-  const [filters, setFilters] = useState<filter_t[]>([{type: "TEST", exposure: 11, count: 22}]);
+  const [filters, setFilters] = useState<filter_t[]>([]);
   const [stacking, setStacking] = useState("");
   const [type, setType] = useState("");
   const [status, setStatus] = useState("");
@@ -48,6 +48,18 @@ export default function Page() {
       console.error(err);
       setStatus("Une erreur est survenue");
     }
+  }
+
+  function updateFilter(index: number, field: 'type' | 'exposure' | 'count', value: string) {
+    setFilters((prev) => {
+      const updated = [...prev];
+      updated[index] = {...updated[index], [field]: value};
+      return updated;
+    });
+  }
+
+  function removeFilter(index: number) {
+    setFilters((prev) => prev.filter((_,i) => i!==index));
   }
 
   return (
@@ -93,12 +105,23 @@ export default function Page() {
           placeholder="Type"
           className="border-b"
         />
-        <button onClick={() => setFilters([...filters, {type: "filter", exposure: 30, count: 0}])}>+</button>
+        <div className="flex flex-col items-center justify-center">
+          {filters.map((r, index) => (
+            <div key={index} className="flex gap-2 items-center">
+              <input value={r.type} onChange={(e) => updateFilter(index, 'type', e.target.value)} />
+              <input value={r.count} onChange={(e) => updateFilter(index, 'count', e.target.value)} type="number" />
+              <input value={r.exposure} onChange={(e) => updateFilter(index, 'exposure', e.target.value)} type="number" />
+              <span>s</span>
+              <button type="button" onClick={() => removeFilter(index)} className="text-red-600 hover:underline ml-2">✕</button>
+            </div>
+          ))}
+          <button type="button" className="text-black hover:underline ml-2" onClick={() => setFilters([...filters, {type: "filter", exposure: 30, count: 0}])}>Ajouter un filtre</button>
+        </div>
         <UploadButton setPublicID={setPublicID} publicID={publicID} />
         <button
           type="submit"
           disabled={!publicID}
-          className="bg-black text-white p-2 rounded-full"
+          className="bg-black text-white p-2 rounded-full hover:shadow-xl"
         >
           Envoyer
         </button>
