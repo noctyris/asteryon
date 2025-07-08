@@ -11,7 +11,7 @@ type filter_t = {
 
 export default function Page() {
   const [title, setTitle] = useState("");
-  const [publicID, setPublicID] = useState("");
+  const [publicID, setPublicID] = useState<string | undefined>("");
   const [captureDate, setCaptureDate] = useState("");
   const [scope, setScope] = useState("");
   const [camera, setCamera] = useState("");
@@ -93,6 +93,7 @@ export default function Page() {
           placeholder="Type"
           className="border-b"
         />
+        <button onClick={() => setFilters([...filters, {type: "filter", exposure: 30, count: 0}])}>+</button>
         <UploadButton setPublicID={setPublicID} publicID={publicID} />
         <button
           type="submit"
