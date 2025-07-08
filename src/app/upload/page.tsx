@@ -10,17 +10,38 @@ type filter_t = {
 }
 
 export default function Page() {
-  const [resource, setResource] = useState();
-//  const [title, setTitle] = useState('');
-//  const [date, setDate] = useState('');
-//  const [scope, setScope] = useState('');
-//  const [camera, setCamera] = useState('');
-//  const [filters, setFilters] = useState<filter_t[]>([]);
-//  const [stacking, setStacking] = useState('');
-//  const [type, setType] = useState('');
+  const [title, setTitle] = useState('');
+  const [publicID, setPublicID] = useState('');
+  const [captureDate, setCaptureDate] = useState('');
+  const [scope, setScope] = useState('');
+  const [camera, setCamera] = useState('');
+  const [filters, setFilters] = useState<filter_t[]>([]);
+  const [stacking, setStacking] = useState('');
+  const [type, setType] = useState('');
   const [status, setStatus] = useState('');
 
-  console.log(resource);
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    try {
+      const res = await fetch('/api/add-picture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title, publicID, capture_date: captureDate, scope, camera, filters, stacking, type
+        }),
+      });
+
+      if (!res.ok) throw new Error('Failed to submit to add-picture API');
+
+      const json = await res.json();
+      if (json.success) setStatus('Image enregistrée !');
+      else setStatus('Erreur API: ' + json.error);
+    } catch (err) {
+      console.error(err);
+      setStatus('Une erreur est survenue');
+    }
+  }
 
   return (
     <div>
@@ -34,10 +55,10 @@ export default function Page() {
 	          clientAllowedFormats: ["webp", "png", "jpg", "jpeg"],
 	        }}
 	        signatureEndpoint="/api/sign-cloudinary-params"
-	        onSuccess={(result) => {
-	          setResource(result?.info);
+	        onSuccess={(result, { widget }) => {
+	          setPublicID(result?.info?.public_id);
 	        }}
-	        onQueuesEnd={({ widget }) => {
+	        onQueuesEnd={(result, { widget }) => {
 	          widget.close();
 	        }}
 	      >
