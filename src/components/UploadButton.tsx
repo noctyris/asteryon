@@ -1,6 +1,11 @@
-import { CldUploadWidget, CldImage } from "next-cloudinary";
+import { CldUploadWidget, CldImage, CloudinaryUploadWidgetResults, CloudinaryUploadWidgetInfo } from "next-cloudinary";
 
-export default function UploadButton(props) {
+interface UploadButtonProps {
+  publicID?: string;
+  setPublicID: (id: string | undefined) => void;
+}
+
+export default function UploadButton(props: UploadButtonProps) {
   return (
     <CldUploadWidget
       options={{
@@ -10,8 +15,11 @@ export default function UploadButton(props) {
         clientAllowedFormats: ["webp", "png", "jpg", "jpeg"],
       }}
       signatureEndpoint="/api/sign-cloudinary-params"
-      onSuccess={(result, { widget }) => {
-        props.setPublicID(result?.info?.public_id);
+      onSuccess={(result: CloudinaryUploadWidgetResults) => {
+        const info = result.info as CloudinaryUploadWidgetInfo;
+        if (info?.public_id) {
+          props.setPublicID(info.public_id);
+        }
       }}
       onQueuesEnd={(result, { widget }) => {
         widget.close();
