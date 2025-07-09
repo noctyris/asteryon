@@ -63,7 +63,6 @@ export default function Page() {
 
   return (
     <div>
-      <h1 className="text-5xl">Upload</h1>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-2 p-4 justify-center items-center bg-white text-black w-fit mx-auto rounded-3xl"

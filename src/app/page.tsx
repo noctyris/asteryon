@@ -13,11 +13,8 @@ export default async function Home() {
 
   return (
     <>
-      <header className="flex items-center justify-between p-7 pb-9 bg-white text-black">
-        <h1 className="text-5xl">Asteryon</h1>
-        <Link href="/upload">Upload</Link>
-      </header>
-      <main>{pictures}</main>
+      <Link href="/upload" className="absolute right-3 top-3">Upload</Link>
+      <main className="m-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">{pictures}</main>
     </>
   );
 }
