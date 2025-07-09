@@ -10,8 +10,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,4 +27,8 @@ body {
 
 * {
   transition: 0.5s;
+}
+
+.font-important {
+  font-family: var(--font-montserrat-alternates);
 }
