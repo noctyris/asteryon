@@ -2,17 +2,18 @@
 
 import { CldImage } from "next-cloudinary";
 import { Picture } from "@/types";
+import Link from "next/link";
 
 export default function ImageCard({ pic }: { pic: Picture }) {
   return (
-    <div className="relative aspect-square rounded-3xl overflow-hidden shadow group border-black hover:border-white">
+    <Link href={`/image/${pic.id}`} className="relative aspect-square rounded-3xl overflow-hidden shadow group border-black hover:border-white">
       {/* Image en fond, z-0 */}
       <CldImage
         width="1280"
         height="960"
         src={pic.publicID}
         sizes="100vw"
-        alt="Uploaded image"
+        alt={pic.title}
         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 z-0"
       />
 
@@ -25,6 +26,6 @@ export default function ImageCard({ pic }: { pic: Picture }) {
         </p>
         <p className="text-xs text-gray-400">{pic.type}</p>
       </div>
-    </div>
+    </Link>
   );
 }
