@@ -3,7 +3,6 @@ export const dynamic = "force-dynamic";
 import { fetchImages } from "@/app/lib/data";
 import ImageCard from "@/components/ImageCard";
 import { Picture } from "@/types";
-import Link from "next/link";
 
 export default async function Home() {
   const rawPictures = await fetchImages();
@@ -13,9 +12,6 @@ export default async function Home() {
 
   return (
     <>
-      <Link href="/upload" className="absolute right-3 top-3 font-important">
-        Upload
-      </Link>
       <main className="m-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 m-w-[1200px] mx-auto">
         {pictures}
       </main>
