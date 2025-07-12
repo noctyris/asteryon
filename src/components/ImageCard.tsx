@@ -25,7 +25,7 @@ export default function ImageCard({ pic }: { pic: Picture }) {
       <div className="absolute bottom-0 left-0 right-0 p-4 text-white z-20 opacity-100 md:opacity-0 group-hover:opacity-100">
         <h2 className="text-lg font-semibold truncate">{pic.title}</h2>
         <p className="text-sm text-gray-300">
-          {pic.capture_date?.toString().slice(0, 10)}
+          {pic.capture_date?.toString().slice(0, 15)}
         </p>
         <p className="text-xs text-gray-400">{pic.type}</p>
       </div>
