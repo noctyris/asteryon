@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat_Alternates, Montserrat } from "next/font/google";
+import LayoutInfo from "@/components/LayoutInfo";
 import "./globals.css";
-import Link from "next/link";
 
 const montserratAlternates = Montserrat_Alternates({
   variable: "--font-montserrat-alternates",
@@ -30,9 +30,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.className} ${montserratAlternates.variable} antialiased pt-2`}
       >
-        <Link href="/" className={`${montserratAlternates.className} text-5xl p-3 underline decoration-indigo-500 md:decoration-indigo-500/25 hover:decoration-indigo-500 text-shadow-md hover:text-shadow-lg text-shadow-indigo-500`}>
-          Asteryon
-        </Link>
+        <LayoutInfo className={`${montserratAlternates.className}`} />
         {children}
       </body>
     </html>
