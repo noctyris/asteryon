@@ -6,7 +6,10 @@ import Link from "next/link";
 
 export default function ImageCard({ pic }: { pic: Picture }) {
   return (
-    <Link href={`/image/${pic.id}`} className="relative aspect-square rounded-3xl overflow-hidden shadow group border-black hover:border-white">
+    <Link
+      href={`/image/${pic.id}`}
+      className="relative aspect-square rounded-3xl overflow-hidden shadow group border-black hover:border-white"
+    >
       {/* Image en fond, z-0 */}
       <CldImage
         width="1280"
