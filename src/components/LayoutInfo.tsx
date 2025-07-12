@@ -7,7 +7,7 @@ export default function LayoutInfo({ className }: { className?: string }) {
   const pathname = usePathname();
 
   const uploadBtnPages = ["/"];
-  const crossBtnPages = ["/upload"];
+  const crossBtnPages = ["/dashboard/upload"];
 
   return (
     <header
