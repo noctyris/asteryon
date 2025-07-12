@@ -17,7 +17,7 @@ export default function LayoutInfo({ className }: { className?: string }) {
         Asteryon
       </p>
       {uploadBtnPages.includes(pathname) && (
-        <Link href="/upload" className="hover:underline">
+        <Link href="/dashboard/upload" className="hover:underline">
           Upload
         </Link>
       )}
