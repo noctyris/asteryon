@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${montserrat.className} ${montserratAlternates.variable} antialiased pt-2`}
+        className={`${montserrat.className} ${montserratAlternates.variable} antialiased py-2`}
       >
         <LayoutInfo className={`${montserratAlternates.className}`} />
         {children}
