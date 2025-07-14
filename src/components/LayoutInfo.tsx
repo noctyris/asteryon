@@ -16,11 +16,11 @@ export default function LayoutInfo({ className }: { className?: string }) {
       <p className="text-5xl underline decoration-indigo-500 md:decoration-indigo-500/25 hover:decoration-indigo-500 text-shadow-md hover:text-shadow-lg text-shadow-indigo-500">
         Asteryon
       </p>
-      {uploadBtnPages.includes(pathname) && (
+      {/*uploadBtnPages.includes(pathname) && (
         <Link href="/dashboard/upload" className="hover:underline">
           Upload
         </Link>
-      )}
+      )*/}
       {(pathname.startsWith("/image") || crossBtnPages.includes(pathname)) && (
         <Link className="hover:underline mr-4" href="/">
           ✕
