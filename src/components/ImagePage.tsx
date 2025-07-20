@@ -95,6 +95,9 @@ export default function ImagePage({ pic }: { pic: Picture }) {
                 <th className="text-left pr-4 text-gray-500">Durée totale</th>
                 <td>{totalDuration}</td>
               </tr>
+              <tr>
+                <th class name="text-left pr-4 text-gray-500">ID publique Cloudinary</th>
+                <td>{pic.publicID}</td>
             </tbody>
           </table>
         </div>
