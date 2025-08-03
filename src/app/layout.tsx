@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
 import { Montserrat_Alternates, Montserrat } from "next/font/google";
+import { SessionProvider } from 'next-auth/react';
 import LayoutInfo from "@/components/LayoutInfo";
+import type { Metadata } from "next";
 import "./globals.css";
 
 const montserratAlternates = Montserrat_Alternates({
@@ -31,7 +32,7 @@ export default function RootLayout({
         className={`${montserrat.className} ${montserratAlternates.variable} antialiased py-2`}
       >
         <LayoutInfo className={`${montserratAlternates.className}`} />
-        {children}
+        <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
   );
