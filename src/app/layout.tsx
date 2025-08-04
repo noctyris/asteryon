@@ -2,6 +2,7 @@ import { Montserrat_Alternates, Montserrat } from "next/font/google";
 import { SessionProvider } from 'next-auth/react';
 import LayoutInfo from "@/components/LayoutInfo";
 import type { Metadata } from "next";
+import { auth } from "@root/auth"
 import "./globals.css";
 
 const montserratAlternates = Montserrat_Alternates({
@@ -21,18 +22,21 @@ export const metadata: Metadata = {
   description: "Galerie d'astro",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+  console.log(session);
+
   return (
     <html lang="fr">
       <body
         className={`${montserrat.className} ${montserratAlternates.variable} antialiased py-2`}
       >
         <LayoutInfo className={`${montserratAlternates.className}`} />
-        <SessionProvider>{children}</SessionProvider>
+        <SessionWrapper session={session}>{children}</SessionWrapper>
       </body>
     </html>
   );
