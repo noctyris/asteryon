@@ -8,7 +8,6 @@ export default function Dashboard() {
 
   if (status === 'loading') return <p>Chargement...</p>;
   if (!session) return <p>Pas connecté</p>;
-  if (session) console.table(session);
 
   return (
     <div>
