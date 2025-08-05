@@ -3,7 +3,7 @@ import { auth } from "@root/auth"
 
 export default async function DashboardLayout({ children } : Readonly<{children: React.ReactNode;}>) {
   const session = await auth();
-  console.log("Session serveur:",session);
+//  console.log("Session serveur:",session);
 
   return (
     <>
