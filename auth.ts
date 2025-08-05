@@ -1,10 +1,10 @@
 // auth.ts
-import NextAuth from 'next-auth';
-import { authConfig } from './auth.config';
-import Credentials from 'next-auth/providers/credentials';
-import sql from '@/app/lib/data';
-import bcrypt from 'bcrypt';
-import { z } from 'zod';
+import NextAuth from "next-auth";
+import { authConfig } from "./auth.config";
+import Credentials from "next-auth/providers/credentials";
+import sql from "@/app/lib/data";
+import bcrypt from "bcrypt";
+import { z } from "zod";
 
 async function getUser(email: string) {
   const user = await sql`SELECT * FROM users WHERE username=${email}`;
@@ -13,8 +13,9 @@ async function getUser(email: string) {
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
-  providers: [Credentials({
-    async authorize(credentials) {
+  providers: [
+    Credentials({
+      async authorize(credentials) {
         const parsed = z
           .object({ email: z.string().email(), password: z.string().min(6) })
           .safeParse(credentials);
@@ -29,23 +30,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         return user;
       },
-  })],
+    }),
+  ],
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.name = user.name;
+        token.name = user.username;
         token.email = user.email;
       }
       return token;
     },
     async session({ session, token }) {
-  const t = token as { id: string; name?: string; email?: string };
-  session.user.id = t.id;
-  session.user.name = t.name ?? "";
-  session.user.email = t.email ?? "";
-  return session;
-}
+      const t = token as { id: string; name?: string; email?: string };
+      session.user.id = t.id;
+      session.user.name = t.name ?? "";
+      session.user.email = t.email ?? "";
+      return session;
+    },
   },
 });
-
