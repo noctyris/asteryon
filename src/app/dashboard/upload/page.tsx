@@ -154,7 +154,6 @@ export default function Page() {
         <UploadButton setPublicID={setPublicID} publicID={publicID} />
         <button
           type="submit"
-          disabled={!publicID || filters.length!==0 || !type}
           className="bg-black text-white p-2 rounded-full hover:shadow-xl"
         >
           Envoyer
