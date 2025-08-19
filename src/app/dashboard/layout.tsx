@@ -1,14 +1,16 @@
 import { SessionProvider } from 'next-auth/react';
+import Link from "next/link";
 import { auth } from "@root/auth"
 
 export default async function DashboardLayout({ children } : Readonly<{children: React.ReactNode;}>) {
   const session = await auth();
-//  console.log("Session serveur:",session);
 
   return (
-    <>
-      <p>dashbaord</p>
+    <div className="p-2">
+      <header className="w-full flex p-2 gap-2">
+        <Link href="/dashboard/upload" className="hover:underline">Nouveau</Link>
+      </header>
       <SessionProvider session={session}>{children}</SessionProvider>
-    </>
+    </div>
   )
 }

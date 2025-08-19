@@ -34,7 +34,7 @@ export default async function RootLayout({
       <body
         className={`${montserrat.className} ${montserratAlternates.variable} antialiased py-2`}
       >
-        <LayoutInfo className={`${montserratAlternates.className}`} />
+        <LayoutInfo className={`${montserratAlternates.className}`} isAuth={!!session} />
         <SessionProvider session={session}>{children}</SessionProvider>
       </body>
     </html>

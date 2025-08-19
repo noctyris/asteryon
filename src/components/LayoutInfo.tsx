@@ -1,13 +1,11 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { LogIn, LayoutDashboard, House } from "lucide-react";
 import Link from "next/link";
 
-export default function LayoutInfo({ className }: { className?: string }) {
+export default function LayoutInfo({ className, isAuth }: { className?: string, isAuth: boolean }) {
   const pathname = usePathname();
-
-  const uploadBtnPages = ["/"];
-  const crossBtnPages = ["/dashboard/upload"];
 
   return (
     <header
@@ -16,14 +14,14 @@ export default function LayoutInfo({ className }: { className?: string }) {
       <p className="text-5xl underline decoration-indigo-500 md:decoration-indigo-500/25 hover:decoration-indigo-500 text-shadow-md hover:text-shadow-lg text-shadow-indigo-500">
         Asteryon
       </p>
-      {uploadBtnPages.includes(pathname) && (
-        <Link href="/dashboard/upload" className="hover:underline">
-          Upload
+      {pathname==="/" && (
+        <Link href={isAuth ? "/dashboard" : "/login"} className="hover:underline">
+          {isAuth ? <LayoutDashboard /> : <LogIn />}
         </Link>
       )}
-      {(pathname.startsWith("/image") || crossBtnPages.includes(pathname)) && (
+      {pathname!=="/" && (
         <Link className="hover:underline mr-4" href="/">
-          ✕
+          <House />
         </Link>
       )}
     </header>
