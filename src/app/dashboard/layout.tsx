@@ -8,6 +8,7 @@ export default async function DashboardLayout({ children } : Readonly<{children:
   return (
     <div className="p-2">
       <header className="w-full flex p-2 gap-2">
+        <Link href="/dashboard/" className="hover:underline">Accueil</Link>
         <Link href="/dashboard/upload" className="hover:underline">Nouveau</Link>
       </header>
       <SessionProvider session={session}>{children}</SessionProvider>
