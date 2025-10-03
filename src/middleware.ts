@@ -4,7 +4,11 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET, secureCookie: process.env.NODE_ENV === "production",});
+  const token = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+    secureCookie: process.env.NODE_ENV === "production",
+  });
   const isAuth = Boolean(token && token.id);
 
   const isDashboard = req.nextUrl.pathname.startsWith("/dashboard");
@@ -21,4 +25,3 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: ["/dashboard/:path*"],
 };
-
