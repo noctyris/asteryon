@@ -28,6 +28,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
+  const devStatus = true;
+
+  if (devStatus) {
+    const fallbackUrl = new URL("/fallback", req.url);
+    return NextResponse.redirect(fallbackUrl);
+  }
 
   return (
     <html lang="fr">
