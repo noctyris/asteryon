@@ -1,6 +1,6 @@
 "use client";
 
-import { CldImage } from "next-cloudinary";
+import ProtectedImage from "@/components/ProtectedImage"
 import { Picture } from "@/types";
 import Link from "next/link";
 
@@ -10,12 +10,10 @@ export default function ImageCard({ pic }: { pic: Picture }) {
       href={`/image/${pic.id}`}
       className="relative aspect-square rounded-3xl overflow-hidden shadow group border-black hover:border-white"
     >
-      {/* Image en fond, z-0 */}
-      <CldImage
+      <ProtectedImage
         width="1280"
         height="960"
         src={pic.publicID}
-        sizes="100vw"
         alt={pic.title}
         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 z-0 pointer-events-none"
       />
