@@ -2,7 +2,7 @@
 import { getCldImageUrl } from "next-cloudinary";
 import { useEffect, useRef } from "react";
 
-export default function ProtectedImage({src, width, height, classname}: {src: string, width: number, height: number, classname: string}) {
+export default function ProtectedImage({src, width, height, classname}: {src: string, width: string, height: string, classname: string}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const url = getCldImageUrl({
     width,
@@ -10,11 +10,7 @@ export default function ProtectedImage({src, width, height, classname}: {src: st
     src,
     quality: 'auto',
     format: 'webp',
-    rawTransformations: [
-      "if_w_gt_600",
-      "l_text:Arial_40_bold:Belongs%20to%20Noctyris,co_rgb:ff0000,o_3,g_south_east,x_20,y_20",
-      "if_end"
-    ]
+    transformations: ["protect_astro"],
   });
 
   useEffect(() => {

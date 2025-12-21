@@ -50,7 +50,7 @@ export default function ImagePage({ pic }: { pic: Picture }) {
           width="0"
           height="0"
           src={pic.publicID}
-          className="w-auto
+          classname="w-auto
 	          h-auto
 	          max-w-full
 	          max-h-[calc(100vh-100px)]
