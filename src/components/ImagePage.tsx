@@ -57,7 +57,8 @@ export default function ImagePage({ pic }: { pic: Picture }) {
 	          max-w-full
 	          max-h-[calc(100vh-100px)]
 	          object-contain
-	          rounded-xl"
+	          rounded-xl
+            pointer-events-none"
         />
       </div>
       <div className="w-9/10 mt-4 mx-auto flex flex-row">
