@@ -9,7 +9,7 @@ export default function ProtectedImage({src, width, height, classname}: {src: st
     height,
     src,
     quality: 'auto',
-    format: 'webp',
+    format: 'png',
     transformations: ["protect_astro"],
   });
 
