@@ -1,20 +1,27 @@
 // src/app/dashboard/page.tsx
-'use client';
 
-//import { useSession } from 'next-auth/react';
+import { fetchImages } from "@/app/lib/data";
 
-export default function Dashboard() {
-//  const { data: session, status } = useSession();
+export default async function Dashboard() {
+  const rawPictures = await fetchImages();
+  const table = rawPictures.map((pic) => (
+    <tr key={pic.id}>
+      <td>{pic.id}</td>
+      <td>{pic.title}</td>
+      <td>{pic.publicID}</td>
+      <td>{pic.capture_date?.toString().slice(0, 15)}</td>
+      <td>{pic.scope}</td>
+      <td>{pic.camera}</td>
+      {/*<td>{pic.filters}</td>*/}
+      <td>{pic.stacking}</td>
+      <td>{pic.type}</td>
+    </tr>
+   )
+  )
 
   return (
     <div>
-      <table>
-        <tbody>
-          <tr>
-            <th></th>
-          </tr>
-        </tbody>
-      </table>     
+      <table><tbody>{table}</tbody></table>
     </div>
   );
 }
