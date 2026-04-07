@@ -12,7 +12,7 @@ export default function LayoutInfo({ className, isAuth }: { className?: string, 
       className={`${className} py-3 px-6 w-full flex flex-column justify-between items-center`}
     >
       <p className="text-5xl underline decoration-indigo-500 md:decoration-indigo-500/25 hover:decoration-indigo-500 text-shadow-md hover:text-shadow-lg text-shadow-indigo-500">
-        Asteryon
+        Circumpolar
       </p>
       {pathname==="/" && (
         <Link href={isAuth ? "/dashboard" : "/login"} className="hover:underline">

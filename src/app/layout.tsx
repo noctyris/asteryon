@@ -18,7 +18,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Asteryon",
+  title: "Circumpolar",
   description: "Galerie d'astro",
 };
 
