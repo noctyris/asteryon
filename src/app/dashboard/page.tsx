@@ -7,13 +7,12 @@ export default async function Dashboard() {
   const table = rawPictures.map((pic) => (
     <tr key={pic.id}>
       <td>{pic.id}</td>
-      <td>{pic.title}</td>
-      <td>{pic.publicID}</td>
+      <td><input defaultValue={pic.title} type="text" /></td>
       <td>{pic.capture_date?.toString().slice(0, 15)}</td>
-      <td>{pic.scope}</td>
-      <td>{pic.camera}</td>
+      <td><input defaultValue={pic.scope} type="text" /></td>
+      <td><input defaultValue={pic.camera} type="text" /></td>
       {/*<td>{pic.filters}</td>*/}
-      <td>{pic.stacking}</td>
+      <td><input defaultValue={pic.stacking} type="text" /></td>
       <td>{pic.type}</td>
     </tr>
    )
